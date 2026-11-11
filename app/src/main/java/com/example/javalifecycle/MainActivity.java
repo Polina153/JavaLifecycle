@@ -1,13 +1,9 @@
 package com.example.javalifecycle;
 
-import static android.content.ContentValues.TAG;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -108,14 +104,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onSaveInstanceState(@NonNull Bundle instanceState) {
         super.onSaveInstanceState(instanceState);
-        instanceState.putSerializable(KEY_COUNTERS, counters);
+        instanceState.putParcelable(KEY_COUNTERS, counters);
     }
 
     // Восстановление данных
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle instanceState) {
         super.onRestoreInstanceState(instanceState);
-        counters = (Counters) instanceState.getSerializable(KEY_COUNTERS);
+        counters = (Counters) instanceState.getParcelable(KEY_COUNTERS);
         setTextCounters();
     }
 
@@ -126,8 +122,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setTextCounter(textCounter3, counters.getCounter3());
         setTextCounter(textCounter4, counters.getCounter4());
     }
-
-
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
